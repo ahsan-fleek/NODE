@@ -1,0 +1,15 @@
+import { ITodo, TodoFillable } from "../utils/interfaces/api/todoInterface";
+import BaseModel from "./baseModel";
+
+class TodoModel extends BaseModel<ITodo> {
+    protected static getFillable() {
+        return TodoFillable;
+    }
+
+    public static create(data: Partial<ITodo>): ITodo {
+        const fillables = this.getFillable();
+        return this.fill(data, fillables);
+    }
+}
+
+export default TodoModel;
