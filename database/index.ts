@@ -1,24 +1,29 @@
 import { MongoClient, Db } from "mongodb";
-import { BehaviorSubject } from "rxjs";
+import { MONOGODB_CONNECTION_STRING } from "../configuration";
 
-class MongoDatabase {
-    private static client: MongoClient;
-    private static _db: Db;
-    public static db = new BehaviorSubject<Db | null>(null);
+let db: Db | null = null;
 
-    public static async connect(uri: string, dbName: string) {
-        if (!this.client) {
-            this.client = new MongoClient(uri);
-            await this.client.connect();
-            this._db = this.client.db(dbName);
-            this.db.next(this._db);
-            console.log(`Connected to MongoDB: ${dbName}`);
-        }
-    }
+export const connectToDatabase = async (): Promise<void> => {
+  if (!MONOGODB_CONNECTION_STRING) {
+    throw new Error("MongoDB connection string is not defined.");
+  }
 
-    public static getInstance() {
-        return this._db;
-    }
-}
+  const client = new MongoClient(MONOGODB_CONNECTION_STRING);
+  try {
+    await client.connect();
+    db = client.db(); 
+    console.log(`✅ Database connected: ${db.databaseName}`);
+  } catch (error) {
+    console.error("❌ MongoDB connection error:", error);
+    throw error;
+  }
+};
 
-export default MongoDatabase;
+export const getDb = (): Db => {
+  if (!db) {
+    throw new Error("Database not initialized. Call connectToDatabase() first.");
+  }
+  return db;
+};
+
+export { db };

@@ -1,11 +1,9 @@
-import express from 'express';
-const routes = express.Router();
+import { Router } from 'express';
+import TodoController from '../controllers/todo'; 
 
-import TodoRoutes from '../controllers/todo';
+const router = Router();
 
-import { wrapRoutesWithAsyncHandler } from '../utils/helpers/asyncHandler';
+router.get('/get-all', TodoController.getTodos);
+router.post('/create-todo', TodoController.createTodo);
 
-// API versioning prefix '/v1' for example
-routes.use('/v1/todos', wrapRoutesWithAsyncHandler(TodoRoutes));
-
-export const router = routes;
+export default router;
