@@ -1,7 +1,7 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
 import cors from "cors"
+import todoRoutes from './routes/todo';
 
-import router from './routes/todo';
 
 const app: Application = express();
 
@@ -11,10 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-// Health check route
-app.get('/health', (req: Request, res: Response) => {
-  res.status(200).json({ status: 'OK', uptime: process.uptime() });
-});
+
 
 // Global error handler
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
@@ -26,8 +23,8 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
 });
 
 
-export const setupRoutes = () => {
-  app.use('/api', router);
+export const registerRoutes = () => {
+  app.use('/api/todo/', todoRoutes);
 };
 
 export default app;

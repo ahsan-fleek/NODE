@@ -1,11 +1,11 @@
-import { IApiResponseOptions } from "./interfaces/global/generalInterface";
-
-export class Utils {
-    static getCurrentDate(): Date {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Utils = void 0;
+class Utils {
+    static getCurrentDate() {
         return new Date();
     }
-
-    static getValueOfUnAssignedData(field: { columnDataType: string }) {
+    static getValueOfUnAssignedData(field) {
         switch (field.columnDataType) {
             case 'string':
                 return '';
@@ -23,23 +23,15 @@ export class Utils {
                 return null;
         }
     }
-
-    public static apiResponse(options: IApiResponseOptions) {
-        const {
-            res,
-            code,
-            status,
-            responseCode,
-            responseDescription,
-            data = {},
-        } = options;
+    static apiResponse(options) {
+        const { res, code, status, responseCode, responseDescription, data = {}, } = options;
         return res.status(code).send({
             status,
             responseCode,
-            responseDescription:  responseDescription,
+            responseDescription: responseDescription,
             data: data || {},
         });
     }
-
-
 }
+exports.Utils = Utils;
+//# sourceMappingURL=index.js.map

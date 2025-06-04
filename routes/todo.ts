@@ -1,9 +1,10 @@
 import { Router } from 'express';
-import TodoController from '../controllers/todo'; 
+import TodoController from '../controllers/api/todo'; 
+import { asyncHandler } from '../utils/helpers/asyncHandler';
 
 const router = Router();
 
-router.get('/get-all', TodoController.getTodos);
-router.post('/create-todo', TodoController.createTodo);
+router.get("/", asyncHandler(TodoController.getTodos));
+router.post("/", asyncHandler(TodoController.createTodo));
 
 export default router;

@@ -1,5 +1,6 @@
 import { MongoClient, Db } from "mongodb";
 import { MONOGODB_CONNECTION_STRING } from "../configuration";
+import { log } from "../utils/helpers/logger";
 
 let db: Db | null = null;
 
@@ -7,14 +8,13 @@ export const connectToDatabase = async (): Promise<void> => {
   if (!MONOGODB_CONNECTION_STRING) {
     throw new Error("MongoDB connection string is not defined.");
   }
-
   const client = new MongoClient(MONOGODB_CONNECTION_STRING);
   try {
     await client.connect();
     db = client.db(); 
-    console.log(`✅ Database connected: ${db.databaseName}`);
+    log.success('Database connected successfully!');
   } catch (error) {
-    console.error("❌ MongoDB connection error:", error);
+    log.error(`MongoDB connection error: ${error}`);
     throw error;
   }
 };
