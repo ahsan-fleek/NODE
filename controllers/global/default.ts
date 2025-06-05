@@ -4,7 +4,7 @@ import { Utils } from '../../utils';
 
 const routes = express.Router();
 
-routes.all('*', (req: Request, res: Response): void => {
+routes.all(/(.*)/, (req: Request, res: Response):void => {
     Utils.apiResponse({
         res,
         code: HttpStatusCode.NotFound,
@@ -14,4 +14,4 @@ routes.all('*', (req: Request, res: Response): void => {
     });
 });
 
-export const router = routes;
+export const defaultRoutes = routes;

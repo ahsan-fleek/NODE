@@ -4,8 +4,7 @@ import TodoRepository from "../repositories/todo"
 
 class TodoService {
     public async createTodo(data: Partial<ITodo>): Promise<ITodo> {
-        const todo = TodoModel.create(data);
-        return await TodoRepository.addTodo(todo);
+        return await TodoRepository.addTodo(data);
     }
 
     public async getTodos(): Promise<ITodo[]> {
