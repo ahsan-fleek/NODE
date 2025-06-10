@@ -1,4 +1,3 @@
-import TodoModel from "../models/todo";
 import { ITodo } from "../utils/interfaces/api/todoInterface";
 import TodoRepository from "../repositories/todo"
 
