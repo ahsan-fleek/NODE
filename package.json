@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./build/index.js",
     "dev": "concurrently \"tsc -w\" \"nodemon ./build/index.js\"",
-    "build": "tsc --outDir build"
+    "build": "npx tsc --outDir build"
   },
   "license": "ISC",
   "type": "commonjs",
