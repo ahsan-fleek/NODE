@@ -18,8 +18,8 @@ const registerRoutes = () => {
     app.use('/api/system/', system_1.default);
     app.use('/api/todo/', todo_1.default);
     app.use('/', default_1.defaultRoutes);
+    app.use(errorHandler_1.default);
 };
 exports.registerRoutes = registerRoutes;
-app.use(errorHandler_1.default);
 exports.default = app;
 //# sourceMappingURL=app.js.map

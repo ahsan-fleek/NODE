@@ -15,8 +15,7 @@ export const registerRoutes = () => {
   app.use('/api/system/', systemRoutes);
   app.use('/api/todo/', todoRoutes);
   app.use('/', defaultRoutes);
+  app.use(ErrorHandler);
 };
-
-app.use(ErrorHandler);
 
 export default app;
