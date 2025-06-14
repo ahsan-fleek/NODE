@@ -1,5 +1,5 @@
 import { Utils } from "../utils";
-import FillableField from "../utils/interfaces/global/fillableField";
+import FillableField from "../utils/interfaces/global/fillable-field";
 
 abstract class BaseModel<T> {
   protected static fill<T>(

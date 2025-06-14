@@ -11,6 +11,12 @@ class TodoService {
     async getTodos() {
         return await todo_1.default.getTodos();
     }
+    async deleteTodo(id) {
+        return await todo_1.default.deleteTodo(id);
+    }
+    async updateTodo(id, data) {
+        return await todo_1.default.updateTodo(id, data);
+    }
 }
 exports.default = new TodoService();
 //# sourceMappingURL=todo.js.map

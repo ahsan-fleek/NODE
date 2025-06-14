@@ -1,10 +1,9 @@
-import FillableField from "../global/fillableField";
+import FillableField from "../global/fillable-field";
 
 export interface ITodo {
     id?: string;
     title: string;
     description?: string;
-    isCompleted: boolean;
     createdAt?: Date;
     updatedAt?: Date;
 }
@@ -12,7 +11,6 @@ export interface ITodo {
 export const TodoFillable: FillableField[] = [
     { column: 'title', columnDataType: 'string' },
     { column: 'description', columnDataType: 'string' },
-    { column: 'isCompleted', columnDataType: 'boolean' },
     { column: 'createdAt', columnDataType: 'date' },
     { column: 'updatedAt', columnDataType: 'date' },
 ];

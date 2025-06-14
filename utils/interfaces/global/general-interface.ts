@@ -5,7 +5,7 @@ export interface IApiResponseOptions {
     code: number,
     status: boolean,
     responseCode: string,
-    responseDescription: string,
+    responseDescription: string | string[],
     data?: Record<string, any> | Record<string, any>[] | null,
     req?: Request,
     cleanDescription?: boolean

@@ -9,6 +9,7 @@ const cors_1 = __importDefault(require("cors"));
 const todo_1 = __importDefault(require("./routes/todo"));
 const system_1 = __importDefault(require("./routes/system"));
 const default_1 = require("./controllers/global/default");
+const errorHandler_1 = __importDefault(require("./utils/helpers/errorHandler"));
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
@@ -17,15 +18,8 @@ const registerRoutes = () => {
     app.use('/api/system/', system_1.default);
     app.use('/api/todo/', todo_1.default);
     app.use('/', default_1.defaultRoutes);
-    // Global error handler
-    app.use((err, req, res, next) => {
-        console.error('Global error handler:', err);
-        res.status(err.status || 500).json({
-            message: err.message || 'Internal Server Error',
-            error: err,
-        });
-    });
 };
 exports.registerRoutes = registerRoutes;
+app.use(errorHandler_1.default);
 exports.default = app;
 //# sourceMappingURL=app.js.map

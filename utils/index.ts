@@ -1,4 +1,4 @@
-import { IApiResponseOptions } from "./interfaces/global/generalInterface";
+import { IApiResponseOptions } from "./interfaces/global/general-interface";
 
 export class Utils {
     static getCurrentDate(): Date {

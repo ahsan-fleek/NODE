@@ -1,7 +1,4 @@
-#*BEFORE CREATING DOCKER IMAGE, execute npm run compile:staging/prod to create a build folder with updated code
-
 FROM node:22-slim
-
 
 WORKDIR /
 

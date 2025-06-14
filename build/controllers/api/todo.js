@@ -29,6 +29,30 @@ const TodoController = {
             data: todos
         });
     },
+    deleteTodo: async (req, res) => {
+        const id = req.params.id;
+        await todo_1.default.deleteTodo(id);
+        utils_1.Utils.apiResponse({
+            res,
+            code: axios_1.HttpStatusCode.Ok,
+            status: true,
+            responseCode: '200',
+            responseDescription: 'Todo successfully deleted',
+        });
+    },
+    updateTodo: async (req, res) => {
+        const id = req.params.id;
+        const data = req.body;
+        const updatedTodo = await todo_1.default.updateTodo(id, data);
+        utils_1.Utils.apiResponse({
+            res,
+            code: axios_1.HttpStatusCode.Ok,
+            status: true,
+            responseCode: '200',
+            responseDescription: 'Todo successfully updated',
+            data: updatedTodo,
+        });
+    },
 };
 exports.default = TodoController;
 //# sourceMappingURL=todo.js.map

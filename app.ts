@@ -3,6 +3,7 @@ import cors from "cors"
 import todoRoutes from './routes/todo';
 import systemRoutes from './routes/system';
 import { defaultRoutes } from './controllers/global/default';
+import ErrorHandler from './utils/helpers/errorHandler';
 
 const app: Application = express();
 
@@ -14,15 +15,8 @@ export const registerRoutes = () => {
   app.use('/api/system/', systemRoutes);
   app.use('/api/todo/', todoRoutes);
   app.use('/', defaultRoutes);
-  
-  // Global error handler
-  app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-    console.error('Global error handler:', err);
-    res.status(err.status || 500).json({
-      message: err.message || 'Internal Server Error',
-      error: err,
-    });
-  });
 };
+
+app.use(ErrorHandler);
 
 export default app;

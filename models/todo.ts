@@ -1,5 +1,5 @@
-import { ITodo, TodoFillable } from "../utils/interfaces/api/todoInterface";
-import BaseModel from "./baseModel";
+import { ITodo, TodoFillable } from "../utils/interfaces/api/todo-interface";
+import BaseModel from "./base-model";
 
 class TodoModel extends BaseModel<ITodo> {
     protected static getFillable() {
