@@ -1,6 +1,7 @@
 import { IApiResponseOptions } from "./interfaces/global/general-interface";
 
 export class Utils {
+    
     static getCurrentDate(): Date {
         return new Date();
     }
@@ -40,6 +41,5 @@ export class Utils {
             data: data || {},
         });
     }
-
 
 }

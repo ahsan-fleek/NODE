@@ -21,7 +21,7 @@ export const connectToDatabase = async (): Promise<void> => {
 
 export const getDb = (): Db => {
   if (!db) {
-    throw new Error("Database not initialized. Call connectToDatabase() first.");
+    throw new Error("Database not initialized.");
   }
   return db;
 };
