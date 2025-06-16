@@ -42,7 +42,6 @@ class TodoRepository {
   async deleteTodo(id: string): Promise<boolean> {
     try {
       const result = await this.getCollection().deleteOne({ _id: new ObjectId(id) });
-      console.log("Result of deleteTodo:", result);
       if (result.deletedCount === 0) {
         throw new CustomError(404, "Todo not found for deletion");
       }

@@ -45,7 +45,6 @@ class TodoRepository {
     async deleteTodo(id) {
         try {
             const result = await this.getCollection().deleteOne({ _id: new mongodb_1.ObjectId(id) });
-            console.log("Result of deleteTodo:", result);
             if (result.deletedCount === 0) {
                 throw new custom_1.CustomError(404, "Todo not found for deletion");
             }

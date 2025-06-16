@@ -1,4 +1,4 @@
-import express, { Application, Request, Response, NextFunction } from 'express';
+import express, { Application } from 'express';
 import cors from "cors"
 import todoRoutes from './routes/todo';
 import systemRoutes from './routes/system';
