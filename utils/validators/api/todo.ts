@@ -1,11 +1,11 @@
 import Joi from 'joi';
 
-export const createTodoSchema = Joi.object({
+export const createTodoValidator = Joi.object({
   title: Joi.string().min(3).max(100).required(),
   description: Joi.string().required(),
 });
 
-export const updateTodoSchema = Joi.object({
+export const updateTodoValidator = Joi.object({
   title: Joi.string().optional(),
   description: Joi.string().optional(),
 });

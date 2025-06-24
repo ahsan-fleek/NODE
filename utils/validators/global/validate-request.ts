@@ -5,9 +5,17 @@ import { Utils } from '../..';
 
 export const validateRequest = (schema: ObjectSchema) => {
   return (req: Request, res: Response, next: NextFunction): void => {
-    const { error } = schema.validate(req.body, { abortEarly: false });
+    const { error } = schema.validate(req.body, { 
+      abortEarly: true,
+      errors: {
+        wrap: {
+          label: ''
+        }
+      } 
+    
+    });
     if (error) {
-      const message =  error.details.map((detail) => detail.message)
+      const message = error.details[0].message;
       Utils.apiResponse({
         res,
         code: HttpStatusCode.BadRequest,

@@ -6,11 +6,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.registerRoutes = void 0;
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
+const cookie_parser_1 = __importDefault(require("cookie-parser"));
+// import routes
 const todo_1 = __importDefault(require("./routes/todo"));
 const system_1 = __importDefault(require("./routes/system"));
+const user_1 = __importDefault(require("./routes/user"));
 const default_1 = require("./controllers/global/default");
 const errorHandler_1 = __importDefault(require("./utils/helpers/errorHandler"));
-const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
     origin: process.env.CORS_ORIGIN,
@@ -22,6 +24,7 @@ app.use((0, cookie_parser_1.default)());
 const registerRoutes = () => {
     app.use('/api/system/', system_1.default);
     app.use('/api/todo/', todo_1.default);
+    app.use('/api/user', user_1.default);
     app.use('/', default_1.defaultRoutes);
     app.use(errorHandler_1.default);
 };
