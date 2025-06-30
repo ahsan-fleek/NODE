@@ -5,7 +5,7 @@ import { JWT_EXPIRES_IN, JWT_SECRET } from '../../configuration';
 
 class SecurityManager {
 
-  
+
   async hashPassword(password: string, saltRounds: number = SALT_ROUNDS): Promise<string> {
     const salt = await bcrypt.genSalt(saltRounds);
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -16,14 +16,13 @@ class SecurityManager {
     return await bcrypt.compare(plainPassword, hashedPassword);
   }
 
-  async generateToken(payload: object) {
-    return await jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
+  generateToken(payload: object) {
+    return jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
   }
 
-  async verifyToken(token: string) {
-    return await jwt.verify(token, JWT_SECRET);
+  verifyToken(token: string) {
+    return jwt.verify(token, JWT_SECRET);
   }
-
 
 };
 
