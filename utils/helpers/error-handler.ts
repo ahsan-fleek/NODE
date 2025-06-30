@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction  } from 'express';
 import { CustomError } from '../errors/custom';
 import { ValidationError } from '../errors/validation';
-import { Utils } from '../';
+import { Utils } from '..';
 import { HttpStatusCode } from 'axios';
 
 export const ErrorHandler = (err: Error, req: Request, res: Response, next: NextFunction ): void => {

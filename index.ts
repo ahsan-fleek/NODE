@@ -2,9 +2,9 @@ import app, { registerRoutes } from './app';
 import http from 'http';
 import { connectToDatabase } from './database';
 import { log } from './utils/helpers/logger';
+import { PORT } from './configuration';
 
 
-const PORT = process.env.PORT || 3000;
 const server = http.createServer(app);
 
 async function initApplication() {

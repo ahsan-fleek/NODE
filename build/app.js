@@ -12,21 +12,26 @@ const todo_1 = __importDefault(require("./routes/todo"));
 const system_1 = __importDefault(require("./routes/system"));
 const user_1 = __importDefault(require("./routes/user"));
 const default_1 = require("./controllers/global/default");
-const errorHandler_1 = __importDefault(require("./utils/helpers/errorHandler"));
+const configuration_1 = require("./configuration");
+const error_handler_1 = __importDefault(require("./utils/helpers/error-handler"));
+const block_get_request_body_1 = __importDefault(require("./utils/validators/global/block-get-request-body"));
+const validate_http_request_1 = __importDefault(require("./utils/validators/global/validate-http-request"));
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
-    origin: process.env.CORS_ORIGIN,
+    origin: configuration_1.CORS_ORIGIN,
     credentials: true
 }));
 app.use(express_1.default.json({ limit: "16kb" }));
 app.use(express_1.default.urlencoded({ extended: true, limit: "16kb" }));
 app.use((0, cookie_parser_1.default)());
+app.use(block_get_request_body_1.default);
+app.use(validate_http_request_1.default);
 const registerRoutes = () => {
-    app.use('/api/system/', system_1.default);
-    app.use('/api/todo/', todo_1.default);
+    app.use('/api/system', system_1.default);
+    app.use('/api/todo', todo_1.default);
     app.use('/api/user', user_1.default);
     app.use('/', default_1.defaultRoutes);
-    app.use(errorHandler_1.default);
+    app.use(error_handler_1.default);
 };
 exports.registerRoutes = registerRoutes;
 exports.default = app;

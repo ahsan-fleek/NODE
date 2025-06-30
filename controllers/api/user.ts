@@ -18,6 +18,19 @@ const UserController = {
   },
 
 
+  signin: async (req: Request, res: Response) => {
+    const user = await UserService.signinUser(req.body);
+    Utils.apiResponse({
+      res,
+      code: HttpStatusCode.Ok,
+      status: true,
+      responseCode: '200',
+      responseDescription: 'You have successfully Signin',
+      data: user
+    });
+  }
+
+
 
 };
 

@@ -1,6 +1,8 @@
+import { ObjectId } from "mongodb";
 import FillableField from "../global/fillable-field";
 
 export interface IUser {
+    _id?: ObjectId;
     fullname: string;
     email: string;
     password: string;

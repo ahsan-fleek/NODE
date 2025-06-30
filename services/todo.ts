@@ -3,7 +3,13 @@ import TodoRepository from "../repositories/todo"
 
 class TodoService {
     public async createTodo(data: Partial<ITodo>): Promise<ITodo> {
-        return await TodoRepository.addTodo(data);
+        const todo: ITodo = {
+            title: data.title,
+            description: data.description || "",
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        };
+        return await TodoRepository.addTodo(todo);
     }
 
     public async getTodos(): Promise<ITodo[]> {
@@ -17,7 +23,7 @@ class TodoService {
     public async updateTodo(id: string, data: Partial<ITodo>): Promise<ITodo | null> {
         return await TodoRepository.updateTodo(id, data);
     }
-    
+
 }
 
 export default new TodoService();

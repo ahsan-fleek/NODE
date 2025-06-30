@@ -1,37 +1,28 @@
-import { Collection, Db, WithId } from "mongodb";
-import { getDb } from "../database";
-import { CustomError } from "../utils/errors/custom";
-import { IUser } from "../utils/interfaces/api/user-interface";
-import UserModel from "../models/user";
+import {  ObjectId } from 'mongodb';
+import { IUser } from '../utils/interfaces/api/user-interface';
+import { BaseRepository } from './base-repository';
 
-class UserRepository {
-  private collection: Collection<IUser> | null = null;
-  
-  private getCollection(): Collection<IUser> {
-    if (!this.collection) {
-      const db: Db = getDb(); 
-      this.collection = db.collection<IUser>("users");
-    }
-    return this.collection;
+class UserRepository extends BaseRepository<IUser> {
+  constructor() {
+    super('users');
   }
 
-  async signup(data: Partial<IUser>): Promise<WithId<IUser>> {
-    try {
-      const user: IUser = UserModel.create(data);
-      const result = await this.getCollection().insertOne(user);
-      const createdUser = await this.getCollection().findOne({ _id: result.insertedId });
-      if (!createdUser)  {
-        throw new CustomError(500, "user creation failed");
-      }
-      return createdUser;
-    } catch (error) {
-      console.error("Error adding todo:", error);
-      throw error;
-    }
+  findByEmail(email: string) {
+    return this.findOne({ email });
+  }
+
+  findByFullName(fullname: string) {
+    return this.findOne({ fullname });
   }
 
 
+  findById(id: string) {
+    return this.findOne({ _id: new ObjectId(id) } );
+  }
 
+  insertUser(user: IUser) {
+    return this.insertOne(user);
+  }
 }
 
 export default new UserRepository();

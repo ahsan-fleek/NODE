@@ -40,14 +40,14 @@ const app_1 = __importStar(require("./app"));
 const http_1 = __importDefault(require("http"));
 const database_1 = require("./database");
 const logger_1 = require("./utils/helpers/logger");
-const PORT = process.env.PORT || 3000;
+const configuration_1 = require("./configuration");
 const server = http_1.default.createServer(app_1.default);
 async function initApplication() {
     try {
         await (0, database_1.connectToDatabase)();
         (0, app_1.registerRoutes)();
-        server.listen(PORT, () => {
-            logger_1.log.success(`Server is running on port ${PORT}`);
+        server.listen(configuration_1.PORT, () => {
+            logger_1.log.success(`Server is running on port ${configuration_1.PORT}`);
         });
     }
     catch (error) {

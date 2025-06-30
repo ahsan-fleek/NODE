@@ -6,7 +6,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const todo_1 = __importDefault(require("../repositories/todo"));
 class TodoService {
     async createTodo(data) {
-        return await todo_1.default.addTodo(data);
+        const todo = {
+            title: data.title,
+            description: data.description || "",
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        };
+        return await todo_1.default.addTodo(todo);
     }
     async getTodos() {
         return await todo_1.default.getTodos();
