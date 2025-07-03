@@ -2,12 +2,16 @@ import { ITodo } from "../utils/interfaces/api/todo-interface";
 import TodoRepository from "../repositories/todo"
 
 class TodoService {
-    public async createTodo(data: Partial<ITodo>): Promise<ITodo> {
+    public async createTodo(data: Partial<ITodo>,  user: { id: string; fullname: string }): Promise<ITodo> {
         const todo: ITodo = {
             title: data.title,
-            description: data.description || "",
+            description: data.description,
             createdAt: new Date(),
             updatedAt: new Date(),
+            createdBy: {
+                id: user.id,
+                fullname: user.fullname,
+            },
         };
         return await TodoRepository.addTodo(todo);
     }

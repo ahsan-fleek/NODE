@@ -1,4 +1,4 @@
-import { ObjectId } from 'mongoose';
+import { ObjectId } from 'mongodb';
 import { IUser } from '../utils/interfaces/api/user-interface';
 
 export interface UserDTO {
@@ -9,7 +9,7 @@ export interface UserDTO {
 
 export const UserDTO = (user: IUser): UserDTO => {
     return {
-        _id: user._id?.toString() || '',
+        _id: user._id?.toString(),
         email: user.email,
         fullname: user.fullname,
     };

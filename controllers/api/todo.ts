@@ -3,10 +3,15 @@ import { HttpStatusCode } from 'axios';
 import TodoService from "../../services/todo";
 import { Utils } from "../../utils";
 
+interface AuthenticatedRequest extends Request {
+  user: any;
+}
+
 const TodoController = {
   
-  createTodo: async (req: Request, res: Response) => {
-    const todo = await TodoService.createTodo(req.body);
+  createTodo: async (req: AuthenticatedRequest, res: Response) => {
+    const { id, fullname } = req.user;
+    const todo = await TodoService.createTodo(req.body, { id, fullname });
     Utils.apiResponse({
       res,
       code: HttpStatusCode.Ok,

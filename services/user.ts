@@ -41,7 +41,7 @@ class UserService {
         const isMatch = await SecurityManager.comparePassword(password, user.password);
         if (!isMatch) throw new CustomError(400, 'Invalid password');
 
-        const token = SecurityManager.generateToken({
+        const token =  SecurityManager.generateToken({
             id: user._id,
             email: user.email,
             fullname: user.fullname,
@@ -50,6 +50,7 @@ class UserService {
         return { token, user: userDTO };
 
     }
+    
 }
 
 export default new UserService();

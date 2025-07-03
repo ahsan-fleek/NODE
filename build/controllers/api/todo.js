@@ -8,7 +8,8 @@ const todo_1 = __importDefault(require("../../services/todo"));
 const utils_1 = require("../../utils");
 const TodoController = {
     createTodo: async (req, res) => {
-        const todo = await todo_1.default.createTodo(req.body);
+        const { id, fullname } = req.user;
+        const todo = await todo_1.default.createTodo(req.body, { id, fullname });
         utils_1.Utils.apiResponse({
             res,
             code: axios_1.HttpStatusCode.Ok,
